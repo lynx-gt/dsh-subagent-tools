@@ -1,0 +1,52 @@
+# dsh-subagent-tools bundle patch.
+#
+# Replaces the stock subagent delegation tools with the enhanced versions from
+# this package: per-call model/provider/persona/toolFilter overrides,
+# `@preset:<id>` persona references, and `provider/model` composite model ids.
+# No official package files are modified — the shipped `tool-subagent` and
+# `tool-subagent-fork` rows are simply disabled and this package's rows take
+# their place (same tool names, same providers, same background modes).
+#
+# Install: dsh plugin --profile web add <this package>
+#   (npm registry, a local path, or github:owner/repo#ref)
+# Restart `dsh --profile web` after installing.
+
+# ── disable the stock delegation tools ────────────────────────────────
+- id: tool-subagent
+  disabled: true
+
+- id: tool-subagent-fork
+  disabled: true
+
+# ── insert our enhanced tools (same surface as the shipped rows) ─────────
+- insert:
+    # Spawn: continuable background by default, tool name `subagent`.
+    # presetHints lists the `@preset:` references surfaced in the tool schema
+    # so the model knows which presets exist on THIS deployment. Adjust to
+    # your own presets, or delete the key to stay generic.
+    - id: tool-subagent-tools
+      name: dsh-subagent-tools
+      config:
+        provider: spawn
+        toolName: subagent
+        backgroundMode: continuable
+        presetHints:
+          - '@preset:翻译员'
+          - '@preset:审校员'
+          - '@preset:停顿标注员'
+          - '@preset:大纲师'
+          - '@preset:审稿人'
+
+    # Fork: one-shot background policy, tool name `subagent_fork`.
+    - id: tool-subagent-tools-fork
+      name: dsh-subagent-tools
+      config:
+        provider: fork
+        toolName: subagent_fork
+        backgroundMode: one-shot
+        presetHints:
+          - '@preset:翻译员'
+          - '@preset:审校员'
+          - '@preset:停顿标注员'
+          - '@preset:大纲师'
+          - '@preset:审稿人'
