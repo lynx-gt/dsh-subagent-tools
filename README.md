@@ -7,6 +7,8 @@ package file**.
 
 | [English](README.md) | [中文](README.zh.md) |
 
+[![awesome · DSH plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
+
 ## What it adds
 
 The stock `subagent` / `subagent_fork` tools only accept `description`, `prompt`, and `run_in_background`.

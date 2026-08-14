@@ -6,6 +6,8 @@
 
 | [English](README.md) | [中文](README.zh.md) |
 
+[![awesome · DSH plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
+
 ## 新增能力
 
 官方 `subagent` / `subagent_fork` 工具只接受 `description` / `prompt` / `run_in_background`。本插件在不改变工具表面的前提下增加按次覆盖参数：
